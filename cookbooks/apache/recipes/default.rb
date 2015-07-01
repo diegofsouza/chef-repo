@@ -7,7 +7,8 @@ service 'httpd' do
 end
 
 cookbook_file '/var/www/html/index.html' do
-    source 'index.html'
+    #source 'index.html'
+    source node['apache']['index_file']
     mode '0644'
 end
 
