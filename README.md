@@ -29,3 +29,37 @@ Roles provide logical grouping of cookbooks and other roles. A sample role can b
 Getting Started
 -------------------------
 Now that you have the chef-repo ready to go, check out [Learn Chef](https://learn.chef.io/) to proceed with your workstation setup. If you have any questions about Chef you can always ask [our support team](https://www.chef.io/support/) for a helping hand.
+
+
+#Chef Server
+https://manage.chef.io
+ - create a server or use a hosted trial server by chef manager(5 nodes)
+ - using hosted server just download the .zip with the repo configured
+ - Chef uses the current repo dir
+ - listing the server
+    knife client list
+
+
+#Chef Nodes
+ - using Chef provided free trainnng VM(expires 20h?):
+    http://opscode-cheflab.herokuapp.com/labs/learnchef/centos/attend
+
+ - or Creating a local Node(Just needed to set root passwd and install openssh-server with root access)
+
+ - setting up new nodes
+    knife bootstrap $host --sudo $user -P $passwd -N $node_name
+    or root 
+    knife bootstrap $host -x root -P $passwd -N $node_name
+
+#First cookbook testing
+knife cookbook create apache
+knife cookbook upload apache
+
+#adding to run list
+knife node run_list add $node_name "recipe[apache]"
+
+#Show node info
+knife node show $node_name
+
+#Remove recipe
+knife node run list remove $node_name "recipe[$recipe_name]"    
